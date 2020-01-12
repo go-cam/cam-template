@@ -1,0 +1,7 @@
+# IDE
+.idea
+
+# environment and output
+.env
+*.exe
+runtime
