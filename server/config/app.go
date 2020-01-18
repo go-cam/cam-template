@@ -15,7 +15,7 @@ func GetServerConfig() *cam.Config {
 }
 
 func httpConfig() base.ConfigComponentInterface {
-	return cam.NewConfigHttpServer(10080).SetSessionName("cam")
+	return cam.NewConfigHttpServer(10080).SetSessionName("cam-template")
 }
 
 func dbConfig() base.ConfigComponentInterface {
