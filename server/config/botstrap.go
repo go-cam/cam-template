@@ -1,9 +1,10 @@
 package config
 
 import (
+	"app/common/config"
+	"app/server/controllers"
+	_ "app/server/database/migrations"
 	"github.com/go-cam/cam"
-	"github.com/go-cam/cam-template/common/config"
-	"github.com/go-cam/cam-template/server/controllers"
 )
 
 func LoadConfig() {

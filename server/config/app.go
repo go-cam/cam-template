@@ -3,22 +3,26 @@ package config
 import (
 	"github.com/go-cam/cam"
 	"github.com/go-cam/cam/core/base"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func GetServerConfig() *cam.Config {
 	config := cam.NewConfig()
 	config.ComponentDict = map[string]base.ConfigComponentInterface{
-		"http": httpConfig(),
-		"db":   dbConfig(),
+		"http":    httpServerConfig(),
+		"db":      databaseConfig(),
+		"console": consoleConfig(),
 	}
 	return config
 }
 
-func httpConfig() base.ConfigComponentInterface {
-	return cam.NewConfigHttpServer(10080).SetSessionName("cam-template")
+// HttpServer config
+func httpServerConfig() base.ConfigComponentInterface {
+	return cam.NewHttpServerConfig(10080).SetSessionName("cam-template")
 }
 
-func dbConfig() base.ConfigComponentInterface {
+// Database config
+func databaseConfig() base.ConfigComponentInterface {
 	driverName := cam.App.GetEvn("DB_DRIVER_NAME")
 	host := cam.App.GetEvn("DB_HOST")
 	port := cam.App.GetEvn("DB_PORT")
@@ -26,5 +30,10 @@ func dbConfig() base.ConfigComponentInterface {
 	username := cam.App.GetEvn("DB_USERNAME")
 	password := cam.App.GetEvn("DB_PASSWORD")
 
-	return cam.NewConfigDatabase(driverName, host, port, name, username, password)
+	return cam.NewDatabaseConfig(driverName, host, port, name, username, password)
+}
+
+// Console config
+func consoleConfig() base.ConfigComponentInterface {
+	return cam.NewConsoleConfig()
 }

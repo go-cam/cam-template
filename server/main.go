@@ -1,8 +1,8 @@
 package main
 
 import (
+	"app/server/config"
 	"github.com/go-cam/cam"
-	"github.com/go-cam/cam-template/server/config"
 )
 
 func main() {
