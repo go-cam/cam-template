@@ -2,7 +2,7 @@ package config
 
 import (
 	"github.com/go-cam/cam"
-	"github.com/go-cam/cam/core/models"
+	"github.com/go-cam/cam/core/camModels"
 )
 
 func GetCommonConfig() *cam.Config {
@@ -11,7 +11,7 @@ func GetCommonConfig() *cam.Config {
 	return config
 }
 
-func appConfig() *models.AppConfig {
+func appConfig() *camModels.AppConfig {
 	appConfig := cam.NewAppConfig()
 
 	return appConfig
