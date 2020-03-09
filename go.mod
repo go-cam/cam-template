@@ -1,8 +1,7 @@
 module app
 
-go 1.13
+go 1.14
 
-require (
-	github.com/go-cam/cam v0.3.0-alpha.1
-	github.com/go-sql-driver/mysql v1.4.1
-)
+require github.com/go-cam/cam v0.0.0-20200309094658-129846f1f09e
+
+replace github.com/go-cam/cam => ./../cam

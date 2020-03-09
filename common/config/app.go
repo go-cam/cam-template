@@ -2,17 +2,29 @@ package config
 
 import (
 	"github.com/go-cam/cam"
-	"github.com/go-cam/cam/core/camModels"
+	"github.com/go-cam/cam/base/camBase"
 )
 
-func GetCommonConfig() *cam.Config {
+// common config
+func GetConfig() camBase.AppConfigInterface {
 	config := cam.NewConfig()
-	config.AppConfig = appConfig()
+	config.ComponentDict = map[string]camBase.ComponentConfigInterface{
+		"db":      databaseConfig(),
+		"console": consoleConfig(),
+	}
 	return config
 }
 
-func appConfig() *camModels.AppConfig {
-	appConfig := cam.NewAppConfig()
+// database component config
+func databaseConfig() camBase.ComponentConfigInterface {
+	config := cam.NewDatabaseConfig("mysql", "127.0.0.1", "3306", "go_cam", "root", "root")
+	return config
+}
 
-	return appConfig
+// console component config
+func consoleConfig() camBase.ComponentConfigInterface {
+	config := cam.NewConsoleConfig()
+	config.DatabaseDir = "../common/database"
+	config.XormTemplateDir = "../common/templates/xorm"
+	return config
 }

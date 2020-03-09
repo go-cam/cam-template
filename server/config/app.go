@@ -1,39 +1,30 @@
 package config
 
 import (
+	"app/server/controllers"
 	"github.com/go-cam/cam"
-	"github.com/go-cam/cam/core/camBase"
-	_ "github.com/go-sql-driver/mysql"
+	"github.com/go-cam/cam/base/camBase"
 )
 
-func GetServerConfig() *cam.Config {
+func GetConfig() camBase.AppConfigInterface {
 	config := cam.NewConfig()
-	config.ComponentDict = map[string]camBase.ConfigComponentInterface{
-		"http":    httpServerConfig(),
-		"db":      databaseConfig(),
-		"console": consoleConfig(),
+	config.ComponentDict = map[string]camBase.ComponentConfigInterface{
+		"http": httpConfig(),
+		"ws":   websocketConfig(),
 	}
 	return config
 }
 
-// HttpServer config
-func httpServerConfig() camBase.ConfigComponentInterface {
-	return cam.NewHttpServerConfig(10080).SetSessionName("cam-template")
+// http component config
+func httpConfig() camBase.ComponentConfigInterface {
+	config := cam.NewHttpConfig(8800)
+	config.Register(&controllers.HelloController{})
+	return config
 }
 
-// Database config
-func databaseConfig() camBase.ConfigComponentInterface {
-	driverName := cam.App.GetEvn("DB_DRIVER_NAME")
-	host := cam.App.GetEvn("DB_HOST")
-	port := cam.App.GetEvn("DB_PORT")
-	name := cam.App.GetEvn("DB_NAME")
-	username := cam.App.GetEvn("DB_USERNAME")
-	password := cam.App.GetEvn("DB_PASSWORD")
-
-	return cam.NewDatabaseConfig(driverName, host, port, name, username, password)
-}
-
-// Console config
-func consoleConfig() camBase.ConfigComponentInterface {
-	return cam.NewConsoleConfig()
+// websocket component config
+func websocketConfig() camBase.ComponentConfigInterface {
+	config := cam.NewWebsocketConfig(9800)
+	config.Register(&controllers.HelloController{})
+	return config
 }
