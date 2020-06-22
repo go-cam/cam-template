@@ -25,4 +25,4 @@ Open the browser and visit: http://127.0.0.1:8800/hello
 
 
 # More
-[Document](https://github.com/go-cam/cam-doc)
+[github.com/go-cam/cam](https://github.com/go-cam/cam)
