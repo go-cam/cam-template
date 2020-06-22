@@ -11,5 +11,5 @@ func (ctrl *HelloController) GetDefaultActionName() string {
 }
 
 func (ctrl *HelloController) Cam() {
-	ctrl.SetResponse([]byte("Welcome to cam framework!"))
+	ctrl.GetContext().Write([]byte("Welcome to cam framework!"))
 }

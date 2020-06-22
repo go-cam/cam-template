@@ -2,7 +2,7 @@
 
 #### 1. Clone cam-template from github
 
-    git clone --depth=1 https://github.com/go-cam/cam-template.git -b v0.3.0-beta.1
+    git clone --depth=1 https://github.com/go-cam/cam-template.git -b v0.4.4
 
 #### 2. Rename folder to your project name
 
